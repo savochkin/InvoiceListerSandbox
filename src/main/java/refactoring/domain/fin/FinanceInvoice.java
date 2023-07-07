@@ -9,11 +9,11 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class FinanceInvoice {
-    final private Long invoiceId;
-    final private LocalDate invoiceDate;
-    final private Long hotelId;
-    final private BigDecimal commission;
-    final private String paidState;
-    final private String type;
-    final private int company;
+    private final Long invoiceId;
+    private final LocalDate invoiceDate;
+    private final Long hotelId;
+    private final BigDecimal commission;
+    private final String paidState;
+    private final String type;
+    private final int company;
 }

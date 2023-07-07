@@ -16,10 +16,12 @@ class InvoiceListerServiceTest {
 /*
    functional requirements:
    + for all invoices return basic information including:
-   externalId, invoiceType, commissionAmount, status, invoiceDate
+   externalId, invoiceType, commissionAmount, status, invoiceDate...
    + for invoices from brazil partner return extra info including:
    rpsNumber, prefeituraUrl
-   + return indicator if invoice is allowed to be paid by Adyen (we allow to be paid by Adyen in all countries but Brazil)
+   + return an indicator if invoice is allowed to be paid by Adyen (business rule: we allow to be paid by Adyen in all countries but Brazil)
+
+   out of scope:
    - for all invoice types commission amount is positive, for credit note - negative
    - for all invoices from non-europe partners return isAdyenPayment = false, otherwise return true
    - partners can fetch invoices only for the assets they currently own
@@ -114,7 +116,7 @@ class InvoiceListerServiceTest {
                 .commissionAmount(BigDecimal.valueOf(231.03))
                 .invoiceType("reservation_statement")
                 .invoiceDate(LocalDate.of(2023, 1, 3))
-                .adyenAllowed(true)
+                .isAdyenAllowed(true)
                 .company(FinConstants.COMPANY_BOOKING_BV)
                 .build();
         InvoiceData invoiceData2 = InvoiceData.builder()
@@ -124,7 +126,7 @@ class InvoiceListerServiceTest {
                 .commissionAmount(BigDecimal.valueOf(232.03))
                 .invoiceType("reservation_statement")
                 .invoiceDate(LocalDate.of(2023, 2, 3))
-                .adyenAllowed(true)
+                .isAdyenAllowed(true)
                 .company(FinConstants.COMPANY_BOOKING_BV)
                 .build();
         InvoiceData invoiceData3 = InvoiceData.builder()
@@ -134,7 +136,7 @@ class InvoiceListerServiceTest {
                 .commissionAmount(BigDecimal.valueOf(233.03))
                 .invoiceType("reservation_statement")
                 .invoiceDate(LocalDate.of(2023, 3, 3))
-                .adyenAllowed(true)
+                .isAdyenAllowed(true)
                 .company(FinConstants.COMPANY_BOOKING_BV)
                 .build();
         InvoiceData invoiceData4 = InvoiceData.builder()
@@ -144,7 +146,7 @@ class InvoiceListerServiceTest {
                 .commissionAmount(BigDecimal.valueOf(234.03))
                 .invoiceType("reservation_statement")
                 .invoiceDate(LocalDate.of(2023, 4, 3))
-                .adyenAllowed(true)
+                .isAdyenAllowed(true)
                 .company(FinConstants.COMPANY_BOOKING_BV)
                 .build();
          */
@@ -184,7 +186,7 @@ class InvoiceListerServiceTest {
                 .invoiceDate(LocalDate.of(2022, 1, 3))
                 .rpsNumber(9999L)
                 .prefeituraUrl("http://www.prefeitura.com/20220103")
-                .adyenAllowed(false)
+                .isAdyenAllowed(false)
                 .company(FinConstants.COMPANY_BOOKING_LTDA)
                 .build();
         InvoiceData invoiceData2 = InvoiceData.builder()
@@ -196,7 +198,7 @@ class InvoiceListerServiceTest {
                 .invoiceDate(LocalDate.of(2022, 2, 3))
                 .rpsNumber(8888L)
                 .prefeituraUrl("http://www.prefeitura.com/20220203")
-                .adyenAllowed(false)
+                .isAdyenAllowed(false)
                 .company(FinConstants.COMPANY_BOOKING_LTDA)
                 .build();*/
         return List.of(invoiceData1, invoiceData2);
