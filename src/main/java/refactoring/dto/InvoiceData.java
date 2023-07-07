@@ -1,6 +1,5 @@
 package refactoring.dto;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,10 +20,8 @@ public class InvoiceData {
     // indicator if this invoice is allowed to be payed online via Adyen
     private boolean isAdyenAllowed;
     // Brazil specific field
-    // TODO: this property is not final, because we are setting it while enriching Core invoices
     private Long rpsNumber;
     // for brazil the download link should point to prefeituraUrl
-    // TODO: this property is not final, because we are setting it while enriching Core invoices
     private String prefeituraUrl;
 
  }
