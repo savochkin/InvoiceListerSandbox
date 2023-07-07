@@ -3,14 +3,7 @@ package refactoring.service.invoices;
 import refactoring.domain.fin.FinanceInvoice;
 import refactoring.dto.InvoiceData;
 
-import java.util.List;
-
 public class CoreInvoicesMapper {
-
-    public static List<InvoiceData> mapCoreInvoices(List<FinanceInvoice> invoices) {
-        return invoices.stream().map(i -> mapCoreInvoice(i)).toList();
-    }
-
     public static InvoiceData mapCoreInvoice(FinanceInvoice i) {
         /*
         Code smell: Mutable Data. If we make InvoiceData mutable - it makes our code fragile as
