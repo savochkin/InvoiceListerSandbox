@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,8 +47,9 @@ class InvoiceListerServiceTest {
         List<InvoiceData> invoices = getListInvoicesController().getInvoicesList(DebtorFactory.getBrazilDebtorId(), false);
         assertNotNull(invoices);
         assertEquals(getExpectedBrazilInvoices().size(), invoices.size());
+        Map<String, InvoiceData> invoicesById = invoices.stream().collect(Collectors.toMap(InvoiceData::getExternalId, Function.identity()));
         for(InvoiceData invoice: getExpectedBrazilInvoices()) {
-            assertTrue(invoices.stream().anyMatch(i -> i.equals(invoice)));
+            assertEquals(invoice, invoicesById.get(invoice.getExternalId()));
         }
     }
 
